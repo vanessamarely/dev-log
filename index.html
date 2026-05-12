@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev-Log | Tu Bitácora de Aprendizaje</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Dev-Log</h1>
+            <p>Registra tus momentos de "¡Eureka!", desafíos y progresos diarios.</p>
+        </header>
+
+        <!-- Creation Panel -->
+        <section class="log-creator">
+            <textarea id="logInput" placeholder="¿Qué aprendiste hoy? ¿Qué problema lograste resolver?"></textarea>
+            <div class="actions">
+                <div class="stats-badge">
+                    <span id="logCounter">0</span> entradas registradas
+                </div>
+                <button id="saveBtn" class="btn-save">Guardar Entrada</button>
+            </div>
+        </section>
+
+        <!-- Feed Section -->
+        <section class="feed">
+            <div class="feed-header">
+                <h2>Entradas recientes</h2>
+            </div>
+            <div id="feedGrid" class="feed-grid">
+                <!-- Las cards se inyectarán aquí mediante JS -->
+            </div>
+        </section>
+    </div>
+
+    <script src="./main.js">
+       
+    </script>
+</body>
+</html>
