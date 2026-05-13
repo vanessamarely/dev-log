@@ -180,3 +180,62 @@ textarea {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* New Resources Section */
+.resources {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px dashed var(--win-shadow-dark);
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.resource-card {
+    background: var(--win-gray);
+    border: 2px solid;
+    border-color: var(--win-white) var(--win-shadow-deep) var(--win-shadow-deep) var(--win-white);
+    display: flex;
+    flex-direction: column;
+}
+
+.resource-body {
+    padding: 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.resource-body h3 {
+    font-size: 1.1rem;
+    color: var(--win-blue);
+}
+
+.resource-body p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.resource-link {
+    display: inline-block;
+    margin-top: auto;
+    color: var(--win-text);
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.resource-link:hover {
+    color: var(--win-blue);
+}
+
+/* Responsive adjustment for resources */
+@media (min-width: 768px) {
+    .resources-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
