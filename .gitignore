@@ -1,0 +1,5 @@
+# IGNORARR ARCHIVOS OCULTOS
+.DS_Store
+
+# IGNORAR CARPETA
+imagenes/
