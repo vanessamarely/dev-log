@@ -183,9 +183,10 @@ textarea {
 
 /* New Resources Section */
 .resources {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 2px dashed var(--win-shadow-dark);
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    border-top: 5px dashed var(--win-shadow-dark);
 }
 
 .resources-grid {
