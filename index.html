@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dev-Log | Tu Bitácora de Aprendizaje</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
 
     <!-- Sidebar Navigation -->
@@ -14,24 +16,26 @@
             <h1>📝 Dev-Log</h1>
             <p>Tu bitácora de aprendizaje</p>
         </div>
-        
+
         <nav class="sidebar-nav">
-            <div class="nav-item active" data-section="dashboard">
-                <span>📊</span>
+            <button class="nav-item active" data-section="dashboard" aria-current="page"
+                aria-label="Dashboard - Ir a sección principal">
+                <span aria-hidden="true">📊</span>
                 <span>Dashboard</span>
-            </div>
-            <div class="nav-item" data-section="entradas">
-                <span>📝</span>
+            </button>
+            <button class="nav-item" data-section="entradas" aria-label="Mis Entradas - Ver todas tus entradas">
+                <span aria-hidden="true">📝</span>
                 <span>Mis Entradas</span>
-            </div>
-            <div class="nav-item" data-section="recursos">
-                <span>📚</span>
+            </button>
+            <button class="nav-item" data-section="recursos" aria-label="Recursos - Acceder a recursos recomendados">
+                <span aria-hidden="true">📚</span>
                 <span>Recursos</span>
-            </div>
-            <div class="nav-item" data-section="estadisticas">
-                <span>📈</span>
+            </button>
+            <button class="nav-item" data-section="estadisticas"
+                aria-label="Estadísticas - Ver análisis de tus entradas">
+                <span aria-hidden="true">📈</span>
                 <span>Estadísticas</span>
-            </div>
+            </button>
         </nav>
 
         <div class="sidebar-footer">
@@ -46,78 +50,206 @@
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <div id="container">
-        <!-- Hero Section -->
-        <header class="hero">
-            <h1>Dev-Log</h1>
-            <p>Registra tus momentos de "¡Eureka!", desafíos y progresos diarios.</p>
-        </header>
 
-        <!-- Creation Panel -->
-        <section class="log-creator">
-            <textarea id="logInput" placeholder="¿Qué aprendiste hoy? ¿Qué problema lograste resolver?"></textarea>
-            <div class="actions">
-                <div class="stats-badge">
-                    <span id="logCounter">0</span> entradas registradas
+            <!-- SECCIÓN: DASHBOARD -->
+            <section class="section-content active" data-section="dashboard" id="dashboard">
+                <header class="hero">
+                    <h1>📊 Dashboard</h1>
+                    <p>Tu espacio personal para registrar aprendizaje y progreso.</p>
+                </header>
+
+                <section class="log-creator">
+                    <textarea id="logInput" placeholder="¿Qué aprendiste hoy? ¿Qué problema lograste resolver?"
+                        aria-label="Campo de entrada para nueva entrada"></textarea>
+                    <div class="actions">
+                        <div class="stats-badge">
+                            <span id="logCounter">0</span> entradas registradas
+                        </div>
+                        <button id="saveBtn" class="btn-save" aria-label="Guardar nueva entrada (Ctrl + Enter)">Guardar
+                            Entrada</button>
+                    </div>
+                </section>
+
+                <section class="feed">
+                    <div class="feed-header">
+                        <h2>📝 Entradas recientes</h2>
+                    </div>
+                    <div id="feedGrid" class="feed-grid">
+                        <!-- Las cards se inyectarán aquí mediante JS -->
+                    </div>
+                </section>
+            </section>
+
+            <!-- SECCIÓN: MIS ENTRADAS -->
+            <section class="section-content" data-section="entradas" id="entradas">
+                <header class="hero">
+                    <h1>📝 Mis Entradas</h1>
+                    <p>Todas tus anotaciones y reflexiones en un solo lugar.</p>
+                </header>
+
+                <div class="filters-bar">
+                    <input type="search" id="searchInput" placeholder="🔍 Buscar en tus entradas..."
+                        class="search-input" aria-label="Buscar entradas">
+                    <select id="sortSelect" class="sort-select" aria-label="Ordenar entradas">
+                        <option value="reciente">Más recientes primero</option>
+                        <option value="antiguo">Más antiguas primero</option>
+                        <option value="alfabetico">Orden alfabético</option>
+                    </select>
                 </div>
-                <button id="saveBtn" class="btn-save">Guardar Entrada</button>
-            </div>
-        </section>
 
-        <!-- Feed Section -->
-        <section class="feed">
-            <div class="feed-header">
-                <h2>Entradas recientes</h2>
-            </div>
-            <div id="feedGrid" class="feed-grid">
-                <!-- Las cards se inyectarán aquí mediante JS -->
-            </div>
-        </section>
+                <div id="allEntriesGrid" class="feed-grid entries-full">
+                    <!-- Todas las entradas se mostrarán aquí -->
+                </div>
 
-        <section class="resources">
-            <div class="feed-header">
-                <h2>Recursos recomendados</h2>
-            </div>
-            <div class="resources-grid">
-                <article class="resource-card">
-                    <div class="card-meta">
-                        <span class="badge">Git</span>
-                    </div>
-                    <div class="resource-body">
-                        <h3>Oh My Git!</h3>
-                        <p>Un juego interactivo para aprender el funcionamiento interno de Git de forma visual.</p>
-                        <a href="https://ohmygit.org/" target="_blank" class="resource-link">Explorar recurso</a>
-                    </div>
-                </article>
+                <div class="empty-state" id="emptyEntries" style="display: none;">
+                    <p>📭 Aún no tienes entradas. ¡Crea una en el Dashboard!</p>
+                </div>
+            </section>
 
-                <article class="resource-card">
-                    <div class="card-meta">
-                        <span class="badge">Frontend</span>
-                    </div>
-                    <div class="resource-body">
-                        <h3>MDN Web Docs</h3>
-                        <p>La fuente de verdad definitiva para HTML, CSS y JavaScript moderno.</p>
-                        <a href="https://developer.mozilla.org/" target="_blank" class="resource-link">Explorar recurso</a>
-                    </div>
-                </article>
+            <!-- SECCIÓN: RECURSOS -->
+            <section class="section-content" data-section="recursos" id="recursos">
+                <header class="hero">
+                    <h1>📚 Recursos Recomendados</h1>
+                    <p>Herramientas y referencias para potenciar tu aprendizaje.</p>
+                </header>
 
-                <article class="resource-card">
-                    <div class="card-meta">
-                        <span class="badge">IA</span>
+                <section class="resources">
+                    <div class="resources-grid">
+                        <article class="resource-card">
+                            <div class="card-meta">
+                                <span class="badge">Git</span>
+                            </div>
+                            <div class="resource-body">
+                                <h3>Oh My Git!</h3>
+                                <p>Un juego interactivo para aprender el funcionamiento interno de Git de forma visual.
+                                </p>
+                                <a href="https://ohmygit.org/" target="_blank" rel="noopener noreferrer"
+                                    class="resource-link">Explorar recurso ↗</a>
+                            </div>
+                        </article>
+
+                        <article class="resource-card">
+                            <div class="card-meta">
+                                <span class="badge">Frontend</span>
+                            </div>
+                            <div class="resource-body">
+                                <h3>MDN Web Docs</h3>
+                                <p>La fuente de verdad definitiva para HTML, CSS y JavaScript moderno.</p>
+                                <a href="https://developer.mozilla.org/" target="_blank" rel="noopener noreferrer"
+                                    class="resource-link">Explorar recurso ↗</a>
+                            </div>
+                        </article>
+
+                        <article class="resource-card">
+                            <div class="card-meta">
+                                <span class="badge">Backend</span>
+                            </div>
+                            <div class="resource-body">
+                                <h3>Node.js Docs</h3>
+                                <p>Documentación oficial de Node.js para desarrollo backend moderno.</p>
+                                <a href="https://nodejs.org/docs/" target="_blank" rel="noopener noreferrer"
+                                    class="resource-link">Explorar recurso ↗</a>
+                            </div>
+                        </article>
+
+                        <article class="resource-card">
+                            <div class="card-meta">
+                                <span class="badge">Database</span>
+                            </div>
+                            <div class="resource-body">
+                                <h3>MongoDB University</h3>
+                                <p>Cursos gratuitos sobre MongoDB y desarrollo con bases de datos NoSQL.</p>
+                                <a href="https://learn.mongodb.com/" target="_blank" rel="noopener noreferrer"
+                                    class="resource-link">Explorar recurso ↗</a>
+                            </div>
+                        </article>
+
+                        <article class="resource-card">
+                            <div class="card-meta">
+                                <span class="badge">IA</span>
+                            </div>
+                            <div class="resource-body">
+                                <h3>Vibe Coding Guide</h3>
+                                <p>Conceptos clave para dominar el desarrollo asistido por IA y flujos iterativos.</p>
+                                <a href="#" class="resource-link">Explorar recurso ↗</a>
+                            </div>
+                        </article>
+
+                        <article class="resource-card">
+                            <div class="card-meta">
+                                <span class="badge">DevTools</span>
+                            </div>
+                            <div class="resource-body">
+                                <h3>VS Code Extensions</h3>
+                                <p>Las mejores extensiones para optimizar tu flujo de desarrollo.</p>
+                                <a href="https://marketplace.visualstudio.com/" target="_blank"
+                                    rel="noopener noreferrer" class="resource-link">Explorar recurso ↗</a>
+                            </div>
+                        </article>
                     </div>
-                    <div class="resource-body">
-                        <h3>Vibe Coding Guide</h3>
-                        <p>Conceptos clave para dominar el desarrollo asistido por IA y flujos iterativos.</p>
-                        <a href="#" class="resource-link">Explorar recurso</a>
+                </section>
+            </section>
+
+            <!-- SECCIÓN: ESTADÍSTICAS -->
+            <section class="section-content" data-section="estadisticas" id="estadisticas">
+                <header class="hero">
+                    <h1>📈 Estadísticas</h1>
+                    <p>Visualiza tu progreso y análisis de aprendizaje.</p>
+                </header>
+
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-content">
+                            <h3>Total de Entradas</h3>
+                            <p class="stat-value" id="statTotalEntries">0</p>
+                        </div>
                     </div>
-                </article>
-            </div>
-        </section>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-content">
+                            <h3>Racha Actual</h3>
+                            <p class="stat-value" id="statStreak">0 días</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <h3>Días Activos</h3>
+                            <p class="stat-value" id="statActiveDays">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-content">
+                            <h3>Promedio por Entrada</h3>
+                            <p class="stat-value" id="statAvgLength">0 caracteres</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h2>📊 Análisis por Tema</h2>
+                    <div id="themeAnalysis" class="theme-grid">
+                        <!-- Se generará dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h2>📆 Actividad Reciente</h2>
+                    <div id="recentActivity" class="activity-list">
+                        <!-- Se generará dinámicamente -->
+                    </div>
+                </div>
+            </section>
+
         </div>
     </div>
 
-    <script src="./main.js">
-       
-    </script>
+    <script src="./main.js"></script>
 </body>
-</html>
+
 </html>
