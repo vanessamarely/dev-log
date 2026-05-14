@@ -8,7 +8,44 @@
 </head>
 <body>
 
-    <div class="container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1>📝 Dev-Log</h1>
+            <p>Tu bitácora de aprendizaje</p>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item active" data-section="dashboard">
+                <span>📊</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item" data-section="entradas">
+                <span>📝</span>
+                <span>Mis Entradas</span>
+            </div>
+            <div class="nav-item" data-section="recursos">
+                <span>📚</span>
+                <span>Recursos</span>
+            </div>
+            <div class="nav-item" data-section="estadisticas">
+                <span>📈</span>
+                <span>Estadísticas</span>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>v1.0 Dashboard Edition</p>
+            <p>Desarrollo moderno 🚀</p>
+        </div>
+    </aside>
+
+    <!-- Toggle Button para Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div id="container">
         <!-- Hero Section -->
         <header class="hero">
             <h1>Dev-Log</h1>
@@ -75,10 +112,12 @@
                 </article>
             </div>
         </section>
+        </div>
     </div>
 
     <script src="./main.js">
        
     </script>
 </body>
+</html>
 </html>

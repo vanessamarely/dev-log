@@ -1,9 +1,36 @@
  /**
-         * Lógica de Dev-Log
+         * Lógica de Dev-Log Dashboard
          * Sigue principios de modularidad y ES6+
          */
         
         document.addEventListener('DOMContentLoaded', () => {
+            // ===== SIDEBAR MANAGEMENT =====
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const mainContent = document.getElementById('mainContent');
+            const navItems = document.querySelectorAll('.nav-item');
+
+            // Toggle sidebar en mobile
+            sidebarToggle?.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded');
+            });
+
+            // Cerrar sidebar al seleccionar un item en mobile
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Cerrar sidebar en mobile
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.add('collapsed');
+                        mainContent.classList.remove('expanded');
+                    }
+                });
+            });
+
+            // ===== LOG ENTRY MANAGEMENT =====
             const logInput = document.getElementById('logInput');
             const saveBtn = document.getElementById('saveBtn');
             const feedGrid = document.getElementById('feedGrid');
@@ -80,7 +107,7 @@
              * Inicializa la aplicación con un ejemplo
              */
             const init = () => {
-                const welcomeText = "¡Bienvenido a Dev-Log! \n\nEste es tu espacio para documentar tu viaje como desarrollador. El registro constante de lo aprendido acelera tu crecimiento profesional.";
+                const welcomeText = "¡Bienvenido al nuevo Dev-Log Dashboard! 🎉\n\nEste es tu espacio personal para documentar tu viaje como desarrollador. Registra tus eureka moments, desafíos superados y progresos diarios.\n\n¡Comienza escribiendo tu primera entrada!";
                 const welcomeCard = createCardElement(welcomeText);
                 feedGrid.appendChild(welcomeCard);
                 updateCounter();
@@ -99,3 +126,4 @@
             // Ejecutar inicialización
             init();
         });
+        
