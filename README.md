@@ -1,7 +1,7 @@
 # 🚀 Dev-Log: Mi Viaje en el Desarrollo
 
 > **"El aprendizaje no es un destino, es un proceso documentado."** > Dev-Log es una aplicación web minimalista y elegante diseñada para capturar esos momentos de claridad ("¡Eureka!"), los desafíos superados y el progreso diario en la carrera de un desarrollador.
-
+Esto es una mejora
 ---
 
 ## 💡 Sobre el Proyecto
